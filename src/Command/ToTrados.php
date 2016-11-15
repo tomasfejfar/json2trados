@@ -30,20 +30,12 @@ class ToTrados extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $originalFilePath = $input->getArgument(self::ARG_ORIGINAL);
-        if (!is_readable($originalFilePath)) {
-            throw new \InvalidArgumentException(sprintf('"%s" is not a original file', $originalFilePath));
-        }
         $outputFilePath = $input->getArgument(self::ARG_OUTPUT);
-        if (is_file($outputFilePath) && (!is_writable($outputFilePath))) {
-            throw new \InvalidArgumentException(sprintf('"%s" is not writable', $outputFilePath));
-        }
+        $pretranslatedFilePath = $input->getOption(self::OPTION_PRETRANSLATED);
+
         $convertor = new ToCsv($originalFilePath, $outputFilePath);
 
-        $pretranslatedFilePath = $input->getOption(self::OPTION_PRETRANSLATED);
         if ($pretranslatedFilePath) {
-            if (!is_readable($pretranslatedFilePath)) {
-                throw new \InvalidArgumentException(sprintf('"%s" is not a pretranslatedFilePath file', $pretranslatedFilePath));
-            }
             $convertor->setPretranslatedFilePath($pretranslatedFilePath);
         }
         $output->writeln(sprintf('<comment>Converting "%s" to "%s".</comment>', $originalFilePath, $outputFilePath));

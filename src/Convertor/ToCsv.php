@@ -16,7 +16,7 @@ class ToCsv
      * @param $originalFilePath
      * @param $outputFilePath
      */
-    public function __construct($originalFilePath, $outputFilePath)
+    public function __construct(string $originalFilePath, string $outputFilePath)
     {
         $this->originalFilePath = $originalFilePath;
         $this->outputFilePath = $outputFilePath;
@@ -27,7 +27,32 @@ class ToCsv
      */
     public function setPretranslatedFilePath($pretranslatedFilePath)
     {
+        if (!is_readable($pretranslatedFilePath)) {
+            throw new \InvalidArgumentException(sprintf('"%s" is not a pretranslatedFilePath file', $pretranslatedFilePath));
+        }
         $this->pretranslatedFilePath = $pretranslatedFilePath;
+    }
+
+    /**
+     * @param string $originalFilePath
+     */
+    public function setOriginalFilePath(string $originalFilePath)
+    {
+        if (!is_readable($originalFilePath)) {
+            throw new \InvalidArgumentException(sprintf('"%s" is not a original file', $originalFilePath));
+        }
+        $this->originalFilePath = $originalFilePath;
+    }
+
+    /**
+     * @param string $outputFilePath
+     */
+    public function setOutputFilePath(string $outputFilePath)
+    {
+        if (is_file($outputFilePath) && (!is_writable($outputFilePath))) {
+            throw new \InvalidArgumentException(sprintf('"%s" is not writable', $outputFilePath));
+        }
+        $this->outputFilePath = $outputFilePath;
     }
 
     public function convert()
