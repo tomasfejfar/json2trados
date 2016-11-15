@@ -1,0 +1,15 @@
+{
+  "name": "tomasfejfar/json2csv",
+  "description": "description_text",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tomáš Fejfar",
+      "email": "tomas.fejfar@gmail.com"
+    }
+  ],
+  "require": {
+    "league/csv": "^8.1"
+  }
+}
