@@ -1,6 +1,6 @@
 {
-  "name": "tomasfejfar/json2csv",
-  "description": "description_text",
+  "name": "tomasfejfar/json2trados",
+  "description": "Tool to convert JSON file to CSV to use in Trados and back",
   "minimum-stability": "stable",
   "license": "MIT",
   "authors": [
